@@ -1,0 +1,23 @@
+name: flutter_clean_ui
+resolution: workspace
+description: UI para generar proyectos Flutter Clean
+publish_to: 'none'
+version: 0.1.0+1
+
+environment:
+  sdk: ^3.12.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  core_package:
+    path: ../core_package
+  file_picker: ^8.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true

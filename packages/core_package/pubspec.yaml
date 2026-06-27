@@ -1,0 +1,13 @@
+name: core_package
+resolution: workspace
+description: Núcleo compartido para generador Flutter Clean
+version: 0.0.1
+
+environment:
+  sdk: ^3.5.0
+
+dependencies:
+  path: ^1.9.0
+
+dev_dependencies:
+  lints: ^6.0.0

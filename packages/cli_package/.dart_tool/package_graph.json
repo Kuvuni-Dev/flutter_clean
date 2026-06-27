@@ -1,0 +1,41 @@
+{
+  "roots": [
+    "flutter_clean_cli"
+  ],
+  "packages": [
+    {
+      "name": "flutter_clean_cli",
+      "version": "0.0.1",
+      "dependencies": [
+        "args",
+        "core"
+      ],
+      "devDependencies": [
+        "lints"
+      ]
+    },
+    {
+      "name": "lints",
+      "version": "3.0.0",
+      "dependencies": []
+    },
+    {
+      "name": "core",
+      "version": "0.0.1",
+      "dependencies": [
+        "path"
+      ]
+    },
+    {
+      "name": "args",
+      "version": "2.7.0",
+      "dependencies": []
+    },
+    {
+      "name": "path",
+      "version": "1.9.1",
+      "dependencies": []
+    }
+  ],
+  "configVersion": 1
+}

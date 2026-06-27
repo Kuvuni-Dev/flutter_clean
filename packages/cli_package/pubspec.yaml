@@ -1,0 +1,19 @@
+name: flutter_clean_cli
+resolution: workspace
+description: CLI para generar proyectos Flutter Clean
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: ^3.5.0
+
+dependencies:
+  args: ^2.4.0
+  core_package:
+    path: ../core_package
+
+executables:
+  flutter_clean: flutter_clean
+
+dev_dependencies:
+  lints: ^6.0.0

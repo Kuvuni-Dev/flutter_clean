@@ -1,0 +1,9 @@
+name: flutter_clean
+publish_to: none
+environment:
+  sdk: ^3.9.0
+workspace:
+  - packages/core_package
+  - packages/cli_package
+  - packages/ui_package
+

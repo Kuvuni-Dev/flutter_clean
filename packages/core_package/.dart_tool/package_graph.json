@@ -1,0 +1,28 @@
+{
+  "roots": [
+    "core"
+  ],
+  "packages": [
+    {
+      "name": "core",
+      "version": "0.0.1",
+      "dependencies": [
+        "path"
+      ],
+      "devDependencies": [
+        "lints"
+      ]
+    },
+    {
+      "name": "lints",
+      "version": "3.0.0",
+      "dependencies": []
+    },
+    {
+      "name": "path",
+      "version": "1.9.1",
+      "dependencies": []
+    }
+  ],
+  "configVersion": 1
+}
