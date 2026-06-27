@@ -79,13 +79,7 @@ class MakeFeatureCommand {
 
     generator.generate(projectPath, config).then((_) {
       print('✅ Feature "${config.featureName}" creada exitosamente.');
-      print('📁 Añadido en $projectPath/lib/domain/');
-      if (config.includeDataLayer) {
-        print('📁 Añadido en $projectPath/lib/data/');
-      }
-      if (config.includePresentationLayer) {
-        print('📁 Añadido en $projectPath/lib/presentation/');
-      }
+      print('📁 Añadido en $projectPath/lib/features/${config.folderName}/');
     }).catchError((error) {
       print('❌ Error al crear la feature: $error');
       exitCode = 1;

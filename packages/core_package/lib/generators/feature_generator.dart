@@ -2,7 +2,8 @@ import '../core/file_system.dart';
 import '../core/template_engine.dart';
 import '../models/feature_config.dart';
 
-/// Añade una feature con Clean Architecture a un proyecto existente.
+/// Añade una feature autocontenida dentro de `lib/features/{featureName}/`
+/// Cada feature tiene sus propias capas domain, data y presentation.
 class FeatureGenerator {
   final FileSystem fileSystem;
   final TemplateEngine templateEngine;
@@ -12,7 +13,7 @@ class FeatureGenerator {
     required this.templateEngine,
   });
 
-  /// Genera la feature dentro del proyecto en [projectPath].
+  /// Genera la feature dentro del proyecto en [projectPath] bajo `lib/features/`.
   Future<void> generate(String projectPath, FeatureConfig config) async {
     final engine = templateEngine.merge({
       'featureName': config.featureName,
@@ -20,35 +21,48 @@ class FeatureGenerator {
       'folderName': config.folderName,
     });
 
-    final featurePath = '$projectPath/lib';
     final folderName = config.folderName;
     final className = config.className;
+    final featureRoot = '$projectPath/lib/features/$folderName';
 
-    // 1. Capa domain: entidad + repositorio abstracto + use case
-    await _generateDomainLayer(
-        featurePath, folderName, className, config, engine);
-
-    // 2. Capa data: modelo + implementación del repositorio
-    if (config.includeDataLayer) {
-      await _generateDataLayer(featurePath, folderName, className, engine);
+    // Crear directorios de la feature
+    final dirs = [
+      '$featureRoot/domain/entities',
+      '$featureRoot/domain/repositories',
+      '$featureRoot/domain/usecases',
+      '$featureRoot/data/models',
+      '$featureRoot/data/repositories',
+      '$featureRoot/presentation/pages',
+    ];
+    for (final dir in dirs) {
+      await fileSystem.createDirectories(dir);
     }
 
-    // 3. Capa presentation: página básica
+    // 1. Capa domain
+    await _generateDomainLayer(
+        featureRoot, folderName, className, config, engine);
+
+    // 2. Capa data
+    if (config.includeDataLayer) {
+      await _generateDataLayer(featureRoot, folderName, className, engine);
+    }
+
+    // 3. Capa presentation
     if (config.includePresentationLayer) {
       await _generatePresentationLayer(
-          featurePath, folderName, className, engine);
+          featureRoot, folderName, className, engine);
     }
   }
 
-  Future<void> _generateDomainLayer(String basePath, String folderName,
+  Future<void> _generateDomainLayer(String featureRoot, String folderName,
       String className, FeatureConfig config, TemplateEngine engine) async {
-    final domainPath = '$basePath/domain';
+    final domainPath = '$featureRoot/domain';
 
-    // Entidad principal de la feature
+    // Entidades
     final entities = config.entities.isNotEmpty
         ? config.entities
         : [
-            config.className
+            className
           ]; // Si no hay entidades, usar la feature como entidad por defecto
 
     for (final entity in entities) {
@@ -69,7 +83,6 @@ class {{entityClassName}} {
       );
     }
 
-    // Determinar el nombre de la primera entidad para las referencias
     final firstEntity = entities.first;
     final firstEntityLowerCase = firstEntity.toLowerCase();
 
@@ -85,7 +98,7 @@ abstract class {{className}}Repository {
 '''),
     );
 
-    // Use case base
+    // Use case
     await fileSystem.writeFile(
       '$domainPath/usecases/get_${folderName}_usecase.dart',
       engine.render('''
@@ -104,11 +117,11 @@ class Get{{className}}UseCase {
     );
   }
 
-  Future<void> _generateDataLayer(String basePath, String folderName,
+  Future<void> _generateDataLayer(String featureRoot, String folderName,
       String className, TemplateEngine engine) async {
-    final dataPath = '$basePath/data';
+    final dataPath = '$featureRoot/data';
 
-    // Modelo (extiende la entidad)
+    // Modelo
     await fileSystem.writeFile(
       '$dataPath/models/${folderName}_model.dart',
       engine.render('''
@@ -126,7 +139,7 @@ class {{className}}Model {
 '''),
     );
 
-    // Implementación del repositorio
+    // Repositorio impl
     await fileSystem.writeFile(
       '$dataPath/repositories/${folderName}_repository_impl.dart',
       engine.render('''
@@ -144,11 +157,11 @@ class {{className}}RepositoryImpl implements {{className}}Repository {
     );
   }
 
-  Future<void> _generatePresentationLayer(String basePath, String folderName,
+  Future<void> _generatePresentationLayer(String featureRoot, String folderName,
       String className, TemplateEngine engine) async {
-    final presentationPath = '$basePath/presentation';
+    final presentationPath = '$featureRoot/presentation';
 
-    // Página básica de la feature
+    // Página básica
     await fileSystem.writeFile(
       '$presentationPath/pages/${folderName}_page.dart',
       engine.render('''

@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
@@ -24,6 +25,13 @@ class _ToolsScreenState extends State<ToolsScreen> {
     return text.replaceAll(RegExp(r'\x1B\[[0-9;]*[a-zA-Z]'), '');
   }
 
+  /// Decodifica bytes crudos como UTF-8, ignorando errores de codificación.
+  /// Esto evita que Windows malinterprete los caracteres Unicode usando
+  /// la code page del sistema (CP-1252/CP-437).
+  String _decodeUtf8Safe(List<int> bytes) {
+    return utf8.decode(bytes, allowMalformed: true);
+  }
+
   Future<void> _checkFlutter() async {
     setState(() {
       _checkingFlutter = true;
@@ -32,35 +40,44 @@ class _ToolsScreenState extends State<ToolsScreen> {
     });
 
     try {
-      // Ejecutar sin --verbose para output más limpio primero
+      // Leer bytes crudos (stdoutEncoding: null) para evitar que Windows
+      // decodifique con la code page del sistema en lugar de UTF-8.
       final versionResult = await Process.run(
         'flutter',
         ['--version', '--no-color'],
         runInShell: true,
-        // Forzar UTF-8 en Windows
-        environment: const {'TERM': 'xterm-256color'},
+        stdoutEncoding: null,
+        stderrEncoding: null,
       );
 
-      // Para flutter doctor usamos --no-color para evitar códigos ANSI
       final doctorResult = await Process.run(
         'flutter',
         ['doctor', '--no-color'],
         runInShell: true,
-        environment: const {'TERM': 'xterm-256color'},
+        stdoutEncoding: null,
+        stderrEncoding: null,
       );
 
       if (mounted) {
-        // Decodificar como UTF-8 para caracteres especiales
-        String versionOut = versionResult.stdout as String;
-        String doctorOut = doctorResult.stdout as String;
+        // Decodificar los bytes crudos explícitamente como UTF-8
+        String versionOut = _decodeUtf8Safe(
+          (versionResult.stdout as List<int>?) ?? [],
+        );
+        String doctorOut = _decodeUtf8Safe(
+          (doctorResult.stdout as List<int>?) ?? [],
+        );
 
         // Stripear cualquier código ANSI residual
         versionOut = _stripAnsi(versionOut);
         doctorOut = _stripAnsi(doctorOut);
 
+        // Limpiar espacios múltiples
+        versionOut = versionOut.replaceAll(RegExp(r'[ \t]+'), ' ').trim();
+        doctorOut = doctorOut.replaceAll(RegExp(r'[ \t]+'), ' ').trim();
+
         setState(() {
-          _flutterVersion = versionOut.trim();
-          _flutterDoctor = doctorOut.trim();
+          _flutterVersion = versionOut;
+          _flutterDoctor = doctorOut;
           _checkingFlutter = false;
         });
       }

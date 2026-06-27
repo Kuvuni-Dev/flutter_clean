@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
+import '../main.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -82,8 +83,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                 label: Text('Sistema'),
                               ),
                             ],
-                            selected: {ThemeMode.system},
-                            onSelectionChanged: (_) {},
+                            selected: {themeModeNotifier.value},
+                            onSelectionChanged: (value) {
+                              themeModeNotifier.value = value.first;
+                            },
                           ),
                         ],
                       ),

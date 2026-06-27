@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'screens/main_shell.dart';
 
+/// Notifier global para el modo de tema de la aplicación.
+final ValueNotifier<ThemeMode> themeModeNotifier = ValueNotifier(
+  ThemeMode.system,
+);
+
 void main() {
   runApp(const FlutterCleanApp());
 }
@@ -10,21 +15,26 @@ class FlutterCleanApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Clean Generator',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorSchemeSeed: const Color(0xFF4CAF50),
-        useMaterial3: true,
-        brightness: Brightness.light,
-      ),
-      darkTheme: ThemeData(
-        colorSchemeSeed: const Color(0xFF4CAF50),
-        useMaterial3: true,
-        brightness: Brightness.dark,
-      ),
-      themeMode: ThemeMode.system,
-      home: const MainShell(),
+    return ValueListenableBuilder<ThemeMode>(
+      valueListenable: themeModeNotifier,
+      builder: (context, themeMode, _) {
+        return MaterialApp(
+          title: 'Flutter Clean Generator',
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            colorSchemeSeed: const Color(0xFF4CAF50),
+            useMaterial3: true,
+            brightness: Brightness.light,
+          ),
+          darkTheme: ThemeData(
+            colorSchemeSeed: const Color(0xFF4CAF50),
+            useMaterial3: true,
+            brightness: Brightness.dark,
+          ),
+          themeMode: themeMode,
+          home: const MainShell(),
+        );
+      },
     );
   }
 }
