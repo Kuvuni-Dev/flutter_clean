@@ -1,14 +1,18 @@
+import '../templates/project_template.dart';
+
 class ProjectConfig {
   final String projectName;
   final String description;
   final String outputPath;
   final String organization; // ej: com.example
+  final TemplateType templateType; // Tipo de plantilla a usar
 
   const ProjectConfig({
     required this.projectName,
     this.description = '',
     this.outputPath = '.',
     this.organization = 'com.kuvuni',
+    this.templateType = TemplateType.cleanArchitecture,
   });
 
   // Getter útil: nombre en formato CamelCase para clases

@@ -16,6 +16,7 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
   final _descCtrl = TextEditingController();
   final _orgCtrl = TextEditingController(text: 'com.kuvuni');
   String _outputPath = '.';
+  TemplateType _selectedTemplate = TemplateType.cleanArchitecture;
 
   // Icono de la app
   String? _iconPath;
@@ -113,6 +114,7 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
           description: _descCtrl.text.trim(),
           outputPath: _outputPath,
           organization: _orgCtrl.text.trim(),
+          templateType: _selectedTemplate,
         ),
       );
 
@@ -300,6 +302,26 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
             border: OutlineInputBorder(),
             prefixIcon: Icon(Icons.business),
           ),
+        ),
+        const SizedBox(height: 12),
+        DropdownButtonFormField<TemplateType>(
+          initialValue: _selectedTemplate,
+          decoration: const InputDecoration(
+            labelText: 'Plantilla / Arquitectura',
+            border: OutlineInputBorder(),
+            prefixIcon: Icon(Icons.category),
+          ),
+          items: TemplateRegistry().allTemplates.map((t) {
+            return DropdownMenuItem(
+              value: t.type,
+              child: Text('${t.name} - ${t.description}'),
+            );
+          }).toList(),
+          onChanged: (value) {
+            if (value != null) {
+              setState(() => _selectedTemplate = value);
+            }
+          },
         ),
         const SizedBox(height: 20),
         SizedBox(
