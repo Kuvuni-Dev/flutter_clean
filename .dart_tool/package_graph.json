@@ -39,7 +39,8 @@
       "dependencies": [
         "core_package",
         "file_picker",
-        "flutter"
+        "flutter",
+        "flutter_markdown"
       ],
       "devDependencies": [
         "flutter_lints",
@@ -69,6 +70,16 @@
         "stream_channel",
         "test_api",
         "vector_math"
+      ]
+    },
+    {
+      "name": "flutter_markdown",
+      "version": "0.7.7+1",
+      "dependencies": [
+        "flutter",
+        "markdown",
+        "meta",
+        "path"
       ]
     },
     {
@@ -190,6 +201,14 @@
         "stream_channel",
         "string_scanner",
         "term_glyph"
+      ]
+    },
+    {
+      "name": "markdown",
+      "version": "7.3.1",
+      "dependencies": [
+        "args",
+        "meta"
       ]
     },
     {

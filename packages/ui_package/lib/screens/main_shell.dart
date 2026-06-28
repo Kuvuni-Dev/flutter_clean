@@ -3,6 +3,8 @@ import 'create_project_screen.dart';
 import 'features_screen.dart';
 import 'tools_screen.dart';
 import 'settings_screen.dart';
+import 'about_screen.dart';
+import 'docs_screen.dart';
 
 class MainShell extends StatefulWidget {
   const MainShell({super.key});
@@ -14,11 +16,13 @@ class MainShell extends StatefulWidget {
 class _MainShellState extends State<MainShell> {
   int _currentIndex = 0;
 
-  final _screens = [
-    const CreateProjectScreen(),
-    const FeaturesScreen(),
-    const ToolsScreen(),
-    const SettingsScreen(),
+  final _screens = const [
+    CreateProjectScreen(),
+    FeaturesScreen(),
+    ToolsScreen(),
+    SettingsScreen(),
+    AboutScreen(),
+    DocsScreen(),
   ];
 
   final _titles = [
@@ -26,6 +30,8 @@ class _MainShellState extends State<MainShell> {
     'Features',
     'Herramientas',
     'Configuración',
+    'Sobre mí',
+    'Documentación',
   ];
 
   @override
@@ -60,6 +66,16 @@ class _MainShellState extends State<MainShell> {
             icon: Icon(Icons.settings_outlined),
             selectedIcon: Icon(Icons.settings),
             label: 'Config',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.person_outline),
+            selectedIcon: Icon(Icons.person),
+            label: 'Sobre mí',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.menu_book_outlined),
+            selectedIcon: Icon(Icons.menu_book),
+            label: 'Docs',
           ),
         ],
       ),

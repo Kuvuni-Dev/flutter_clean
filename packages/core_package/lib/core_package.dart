@@ -7,3 +7,6 @@ export 'core/file_system.dart';
 export 'core/template_engine.dart';
 export 'generators/project_generator.dart';
 export 'generators/feature_generator.dart';
+export 'generators/project_directories.dart';
+export 'generators/project_core_files.dart';
+export 'generators/project_initial_feature.dart';

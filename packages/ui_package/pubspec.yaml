@@ -13,6 +13,7 @@ dependencies:
   core_package:
     path: ../core_package
   file_picker: ^8.0.0
+  flutter_markdown: ^0.7.6
 
 dev_dependencies:
   flutter_test:
@@ -21,3 +22,5 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/docs/
