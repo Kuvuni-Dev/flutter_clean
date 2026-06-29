@@ -38,28 +38,30 @@ class ProjectInfoSection extends StatelessWidget {
         TextField(
           controller: nameCtrl,
           decoration: InputDecoration(
-            label: const LabelWithInfo(
-              label: 'Nombre del proyecto *',
-              tooltip:
-                  'Nombre único para tu proyecto Flutter. Se usará como identificador en pubspec.yaml.',
-            ),
+            labelText: 'Nombre del proyecto *',
             hintText: 'ej: mi_app',
             border: const OutlineInputBorder(),
             prefixIcon: const Icon(Icons.edit),
+            suffixIcon: infoSuffixIcon(
+              context,
+              'Nombre del proyecto',
+              'Nombre único para tu proyecto Flutter. Se usará como identificador en pubspec.yaml.',
+            ),
           ),
         ),
         const SizedBox(height: 12),
         TextField(
           controller: descCtrl,
           decoration: InputDecoration(
-            label: const LabelWithInfo(
-              label: 'Descripción',
-              tooltip:
-                  'Breve descripción del propósito de tu proyecto. Aparecerá en el pubspec.yaml.',
-            ),
+            labelText: 'Descripción',
             hintText: 'Breve descripción del proyecto',
             border: const OutlineInputBorder(),
             prefixIcon: const Icon(Icons.description),
+            suffixIcon: infoSuffixIcon(
+              context,
+              'Descripción',
+              'Breve descripción del propósito de tu proyecto. Aparecerá en el pubspec.yaml.',
+            ),
           ),
           maxLines: 2,
         ),
@@ -69,13 +71,14 @@ class ProjectInfoSection extends StatelessWidget {
             Expanded(
               child: InputDecorator(
                 decoration: InputDecoration(
-                  label: const LabelWithInfo(
-                    label: 'Directorio de salida',
-                    tooltip:
-                        'Carpeta donde se creará el proyecto. Debe ser una ruta vacía o nueva.',
-                  ),
+                  labelText: 'Directorio de salida',
                   border: const OutlineInputBorder(),
                   prefixIcon: const Icon(Icons.folder_open),
+                  suffixIcon: infoSuffixIcon(
+                    context,
+                    'Directorio de salida',
+                    'Carpeta donde se creará el proyecto. Debe ser una ruta vacía o nueva.',
+                  ),
                 ),
                 child: Text(outputPath, overflow: TextOverflow.ellipsis),
               ),
@@ -92,27 +95,29 @@ class ProjectInfoSection extends StatelessWidget {
         TextField(
           controller: orgCtrl,
           decoration: InputDecoration(
-            label: const LabelWithInfo(
-              label: 'Organización',
-              tooltip:
-                  'Identificador de tu organización en formato inverso (ej: com.kuvuni). Se usa para el bundle ID en Android y iOS.',
-            ),
+            labelText: 'Organización',
             hintText: 'com.kuvuni',
             border: const OutlineInputBorder(),
             prefixIcon: const Icon(Icons.business),
+            suffixIcon: infoSuffixIcon(
+              context,
+              'Organización',
+              'Identificador de tu organización en formato inverso (ej: com.kuvuni). Se usa para el bundle ID en Android y iOS.',
+            ),
           ),
         ),
         const SizedBox(height: 12),
         DropdownButtonFormField<TemplateType>(
           value: selectedTemplate,
           decoration: InputDecoration(
-            label: const LabelWithInfo(
-              label: 'Plantilla / Arquitectura',
-              tooltip:
-                  'Arquitectura base del proyecto. Clean Architecture es la recomendada para proyectos escalables.',
-            ),
+            labelText: 'Plantilla / Arquitectura',
             border: const OutlineInputBorder(),
             prefixIcon: const Icon(Icons.category),
+            suffixIcon: infoSuffixIcon(
+              context,
+              'Plantilla / Arquitectura',
+              'Arquitectura base del proyecto. Clean Architecture es la recomendada para proyectos escalables.',
+            ),
           ),
           items: TemplateRegistry().allTemplates.map((t) {
             return DropdownMenuItem(

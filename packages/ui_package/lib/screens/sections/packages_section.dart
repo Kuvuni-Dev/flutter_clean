@@ -74,14 +74,15 @@ class PackagesSection extends StatelessWidget {
             Expanded(
               child: TextField(
                 decoration: InputDecoration(
-                  label: const LabelWithInfo(
-                    label: 'Añadir paquete personalizado',
-                    tooltip:
-                        'Nombre de un paquete Dart/Flutter de pub.dev que quieras instalar en el proyecto.',
-                  ),
+                  labelText: 'Añadir paquete personalizado',
                   hintText: 'ej: package_name',
                   border: const OutlineInputBorder(),
                   prefixIcon: Icon(Icons.add_box),
+                  suffixIcon: infoSuffixIcon(
+                    context,
+                    'Paquete personalizado',
+                    'Nombre de un paquete Dart/Flutter de pub.dev que quieras instalar en el proyecto.',
+                  ),
                 ),
                 onSubmitted: (v) {
                   final pkg = v.trim();

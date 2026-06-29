@@ -90,14 +90,15 @@ class _InstallPackageSectionState extends State<InstallPackageSection> {
             TextField(
               controller: _pkgCtrl,
               decoration: InputDecoration(
-                label: const LabelWithInfo(
-                  label: 'Nombre del paquete',
-                  tooltip:
-                      'Nombre exacto del paquete en pub.dev (ej: dio, riverpod, go_router).',
-                ),
+                labelText: 'Nombre del paquete',
                 hintText: 'ej: dio',
                 border: const OutlineInputBorder(),
                 prefixIcon: Icon(Icons.inventory_2),
+                suffixIcon: infoSuffixIcon(
+                  context,
+                  'Nombre del paquete',
+                  'Nombre exacto del paquete en pub.dev (ej: dio, riverpod, go_router).',
+                ),
               ),
               onSubmitted: (_) => _installPackage(),
             ),
@@ -107,13 +108,14 @@ class _InstallPackageSectionState extends State<InstallPackageSection> {
                 Expanded(
                   child: InputDecorator(
                     decoration: InputDecoration(
-                      label: const LabelWithInfo(
-                        label: 'Carpeta del proyecto',
-                        tooltip:
-                            'Ruta del proyecto Flutter donde se instalará el paquete.',
-                      ),
+                      labelText: 'Carpeta del proyecto',
                       border: const OutlineInputBorder(),
                       prefixIcon: Icon(Icons.folder),
+                      suffixIcon: infoSuffixIcon(
+                        context,
+                        'Carpeta del proyecto',
+                        'Ruta del proyecto Flutter donde se instalará el paquete.',
+                      ),
                     ),
                     child: Text(
                       widget.projectPath,

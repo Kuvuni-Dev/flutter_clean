@@ -1,41 +1,42 @@
 import 'package:flutter/material.dart';
 
-/// A small info icon that shows a tooltip with the given message.
-class InfoTooltip extends StatelessWidget {
-  final String message;
-
-  const InfoTooltip({super.key, required this.message});
-
-  @override
-  Widget build(BuildContext context) {
-    return Tooltip(
-      message: message,
-      child: Icon(
-        Icons.info_outline,
-        size: 16,
-        color: Theme.of(context).colorScheme.onSurfaceVariant,
+/// Shows an AlertDialog with the given message.
+void showInfoDialog(BuildContext context, String title, String message) {
+  showDialog(
+    context: context,
+    builder: (context) => AlertDialog(
+      title: Row(
+        children: [
+          Icon(
+            Icons.info_outline,
+            color: Theme.of(context).colorScheme.primary,
+          ),
+          const SizedBox(width: 8),
+          Expanded(child: Text(title, style: const TextStyle(fontSize: 16))),
+        ],
       ),
-    );
-  }
+      content: SingleChildScrollView(child: Text(message)),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.of(context).pop(),
+          child: const Text('Entendido'),
+        ),
+      ],
+    ),
+  );
 }
 
-/// Wraps a label with an optional info tooltip icon.
-class LabelWithInfo extends StatelessWidget {
-  final String label;
-  final String? tooltip;
-
-  const LabelWithInfo({super.key, required this.label, this.tooltip});
-
-  @override
-  Widget build(BuildContext context) {
-    if (tooltip == null) return Text(label);
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(label),
-        const SizedBox(width: 4),
-        InfoTooltip(message: tooltip!),
-      ],
-    );
-  }
+/// Returns a suffix icon for InputDecoration that shows an AlertDialog with info.
+Widget infoSuffixIcon(BuildContext context, String title, String message) {
+  return GestureDetector(
+    onTap: () => showInfoDialog(context, title, message),
+    child: Padding(
+      padding: const EdgeInsets.only(right: 4),
+      child: Icon(
+        Icons.info_outline,
+        size: 20,
+        color: Theme.of(context).colorScheme.onSurfaceVariant,
+      ),
+    ),
+  );
 }

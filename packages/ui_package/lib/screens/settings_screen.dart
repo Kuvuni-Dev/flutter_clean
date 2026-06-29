@@ -97,13 +97,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
             Expanded(
               child: InputDecorator(
                 decoration: InputDecoration(
-                  label: const LabelWithInfo(
-                    label: 'Directorio de salida por defecto',
-                    tooltip:
-                        'Carpeta predeterminada donde se crearán los nuevos proyectos.',
-                  ),
+                  labelText: 'Directorio de salida por defecto',
                   border: const OutlineInputBorder(),
                   prefixIcon: Icon(Icons.folder_open),
+                  suffixIcon: infoSuffixIcon(
+                    context,
+                    'Directorio de salida',
+                    'Carpeta predeterminada donde se crearán los nuevos proyectos.',
+                  ),
                 ),
                 child: Text(
                   _defaultOutputPath,
@@ -122,14 +123,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
         TextField(
           controller: _orgCtrl,
           decoration: InputDecoration(
-            label: const LabelWithInfo(
-              label: 'Organización por defecto',
-              tooltip:
-                  'Identificador de organización que se usará por defecto en todos los proyectos nuevos.',
-            ),
+            labelText: 'Organización por defecto',
             hintText: 'com.kuvuni',
             border: const OutlineInputBorder(),
             prefixIcon: Icon(Icons.business),
+            suffixIcon: infoSuffixIcon(
+              context,
+              'Organización por defecto',
+              'Identificador de organización que se usará por defecto en todos los proyectos nuevos.',
+            ),
           ),
         ),
       ],

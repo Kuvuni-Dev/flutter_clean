@@ -34,13 +34,14 @@ class IconAssetsSection extends StatelessWidget {
             Expanded(
               child: InputDecorator(
                 decoration: InputDecoration(
-                  label: const LabelWithInfo(
-                    label: 'Icono de la app (PNG)',
-                    tooltip:
-                        'Imagen PNG que será el ícono de la aplicación. Se copiará en lib/assets/.',
-                  ),
+                  labelText: 'Icono de la app (PNG)',
                   border: const OutlineInputBorder(),
                   prefixIcon: Icon(Icons.image),
+                  suffixIcon: infoSuffixIcon(
+                    context,
+                    'Icono de la app',
+                    'Imagen PNG que será el ícono de la aplicación. Se copiará en lib/assets/.',
+                  ),
                 ),
                 child: Text(
                   iconPath?.split(Platform.pathSeparator).last ?? 'Ninguno',
@@ -68,13 +69,14 @@ class IconAssetsSection extends StatelessWidget {
             Expanded(
               child: InputDecorator(
                 decoration: InputDecoration(
-                  label: const LabelWithInfo(
-                    label: 'Assets (carpetas)',
-                    tooltip:
-                        'Carpetas con recursos estáticos (imágenes, fuentes, etc.) que se incluirán en el pubspec.yaml.',
-                  ),
+                  labelText: 'Assets (carpetas)',
                   border: const OutlineInputBorder(),
                   prefixIcon: Icon(Icons.folder_special),
+                  suffixIcon: infoSuffixIcon(
+                    context,
+                    'Assets',
+                    'Carpetas con recursos estáticos (imágenes, fuentes, etc.) que se incluirán en el pubspec.yaml.',
+                  ),
                 ),
                 child: Text(
                   assets.isNotEmpty
