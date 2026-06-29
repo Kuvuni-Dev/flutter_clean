@@ -96,15 +96,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
           children: [
             Expanded(
               child: InputDecorator(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Directorio de salida por defecto',
-                  border: const OutlineInputBorder(),
+                  border: OutlineInputBorder(),
                   prefixIcon: Icon(Icons.folder_open),
-                  suffixIcon: infoSuffixIcon(
-                    context,
-                    'Directorio de salida',
-                    'Carpeta predeterminada donde se crearán los nuevos proyectos.',
-                  ),
                 ),
                 child: Text(
                   _defaultOutputPath,
@@ -112,7 +107,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
               ),
             ),
-            const SizedBox(width: 8),
+            const SizedBox(width: 4),
+            infoSuffixIcon(
+              context,
+              'Directorio de salida',
+              'Carpeta predeterminada donde se crearán los nuevos proyectos.',
+            ),
+            const SizedBox(width: 2),
             IconButton.filled(
               onPressed: _pickDefaultOutput,
               icon: const Icon(Icons.folder),

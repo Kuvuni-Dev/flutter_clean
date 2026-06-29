@@ -33,15 +33,10 @@ class IconAssetsSection extends StatelessWidget {
           children: [
             Expanded(
               child: InputDecorator(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Icono de la app (PNG)',
-                  border: const OutlineInputBorder(),
+                  border: OutlineInputBorder(),
                   prefixIcon: Icon(Icons.image),
-                  suffixIcon: infoSuffixIcon(
-                    context,
-                    'Icono de la app',
-                    'Imagen PNG que será el ícono de la aplicación. Se copiará en lib/assets/.',
-                  ),
                 ),
                 child: Text(
                   iconPath?.split(Platform.pathSeparator).last ?? 'Ninguno',
@@ -49,7 +44,13 @@ class IconAssetsSection extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(width: 8),
+            const SizedBox(width: 4),
+            infoSuffixIcon(
+              context,
+              'Icono de la app',
+              'Imagen PNG que será el ícono de la aplicación. Se copiará en lib/assets/.',
+            ),
+            const SizedBox(width: 2),
             IconButton.filled(
               onPressed: onPickIcon,
               icon: const Icon(Icons.image_search),
@@ -68,15 +69,10 @@ class IconAssetsSection extends StatelessWidget {
           children: [
             Expanded(
               child: InputDecorator(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Assets (carpetas)',
-                  border: const OutlineInputBorder(),
+                  border: OutlineInputBorder(),
                   prefixIcon: Icon(Icons.folder_special),
-                  suffixIcon: infoSuffixIcon(
-                    context,
-                    'Assets',
-                    'Carpetas con recursos estáticos (imágenes, fuentes, etc.) que se incluirán en el pubspec.yaml.',
-                  ),
                 ),
                 child: Text(
                   assets.isNotEmpty
@@ -86,7 +82,13 @@ class IconAssetsSection extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(width: 8),
+            const SizedBox(width: 4),
+            infoSuffixIcon(
+              context,
+              'Assets',
+              'Carpetas con recursos estáticos (imágenes, fuentes, etc.) que se incluirán en el pubspec.yaml.',
+            ),
+            const SizedBox(width: 2),
             IconButton.filled(
               onPressed: onPickAssetFolder,
               icon: const Icon(Icons.add),

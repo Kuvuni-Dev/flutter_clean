@@ -62,20 +62,21 @@ class FeatureFormSection extends StatelessWidget {
           children: [
             Expanded(
               child: InputDecorator(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Ruta del proyecto',
-                  border: const OutlineInputBorder(),
+                  border: OutlineInputBorder(),
                   prefixIcon: Icon(Icons.folder),
-                  suffixIcon: infoSuffixIcon(
-                    context,
-                    'Ruta del proyecto',
-                    'Carpeta raíz del proyecto Flutter Clean donde se añadirá la nueva feature.',
-                  ),
                 ),
                 child: Text(projectPath, overflow: TextOverflow.ellipsis),
               ),
             ),
-            const SizedBox(width: 8),
+            const SizedBox(width: 4),
+            infoSuffixIcon(
+              context,
+              'Ruta del proyecto',
+              'Carpeta raíz del proyecto Flutter Clean donde se añadirá la nueva feature.',
+            ),
+            const SizedBox(width: 2),
             IconButton.filled(
               onPressed: onPickProjectDir,
               icon: const Icon(Icons.folder),

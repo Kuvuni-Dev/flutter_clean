@@ -70,20 +70,21 @@ class ProjectInfoSection extends StatelessWidget {
           children: [
             Expanded(
               child: InputDecorator(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Directorio de salida',
-                  border: const OutlineInputBorder(),
-                  prefixIcon: const Icon(Icons.folder_open),
-                  suffixIcon: infoSuffixIcon(
-                    context,
-                    'Directorio de salida',
-                    'Carpeta donde se creará el proyecto. Debe ser una ruta vacía o nueva.',
-                  ),
+                  border: OutlineInputBorder(),
+                  prefixIcon: Icon(Icons.folder_open),
                 ),
                 child: Text(outputPath, overflow: TextOverflow.ellipsis),
               ),
             ),
-            const SizedBox(width: 8),
+            const SizedBox(width: 4),
+            infoSuffixIcon(
+              context,
+              'Directorio de salida',
+              'Carpeta donde se creará el proyecto. Debe ser una ruta vacía o nueva.',
+            ),
+            const SizedBox(width: 4),
             IconButton.filled(
               onPressed: onPickOutputDir,
               icon: const Icon(Icons.folder),

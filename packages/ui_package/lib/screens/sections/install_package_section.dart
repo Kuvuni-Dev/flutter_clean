@@ -107,15 +107,10 @@ class _InstallPackageSectionState extends State<InstallPackageSection> {
               children: [
                 Expanded(
                   child: InputDecorator(
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Carpeta del proyecto',
-                      border: const OutlineInputBorder(),
+                      border: OutlineInputBorder(),
                       prefixIcon: Icon(Icons.folder),
-                      suffixIcon: infoSuffixIcon(
-                        context,
-                        'Carpeta del proyecto',
-                        'Ruta del proyecto Flutter donde se instalará el paquete.',
-                      ),
                     ),
                     child: Text(
                       widget.projectPath,
@@ -123,7 +118,13 @@ class _InstallPackageSectionState extends State<InstallPackageSection> {
                     ),
                   ),
                 ),
-                const SizedBox(width: 8),
+                const SizedBox(width: 4),
+                infoSuffixIcon(
+                  context,
+                  'Carpeta del proyecto',
+                  'Ruta del proyecto Flutter donde se instalará el paquete.',
+                ),
+                const SizedBox(width: 2),
                 IconButton.filled(
                   onPressed: () async {
                     final path = await FilePicker.platform.getDirectoryPath(
