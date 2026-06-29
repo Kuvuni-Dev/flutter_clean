@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import '../main.dart';
+import '../widgets/settings_card.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -37,176 +38,120 @@ class _SettingsScreenState extends State<SettingsScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // --- Apariencia ---
-              Card(
-                margin: const EdgeInsets.only(bottom: 16),
-                child: Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.palette_outlined,
-                            color: theme.colorScheme.primary,
-                          ),
-                          const SizedBox(width: 8),
-                          Text(
-                            'Apariencia',
-                            style: theme.textTheme.titleMedium?.copyWith(
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 16),
-                      Row(
-                        children: [
-                          const Text('Tema de la aplicación'),
-                          const Spacer(),
-                          SegmentedButton<ThemeMode>(
-                            segments: const [
-                              ButtonSegment(
-                                value: ThemeMode.light,
-                                icon: Icon(Icons.light_mode),
-                                label: Text('Claro'),
-                              ),
-                              ButtonSegment(
-                                value: ThemeMode.dark,
-                                icon: Icon(Icons.dark_mode),
-                                label: Text('Oscuro'),
-                              ),
-                              ButtonSegment(
-                                value: ThemeMode.system,
-                                icon: Icon(Icons.settings_brightness),
-                                label: Text('Sistema'),
-                              ),
-                            ],
-                            selected: {themeModeNotifier.value},
-                            onSelectionChanged: (value) {
-                              themeModeNotifier.value = value.first;
-                            },
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-
-              // --- Valores por defecto ---
-              Card(
-                margin: const EdgeInsets.only(bottom: 16),
-                child: Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.tune_outlined,
-                            color: theme.colorScheme.primary,
-                          ),
-                          const SizedBox(width: 8),
-                          Text(
-                            'Valores por defecto',
-                            style: theme.textTheme.titleMedium?.copyWith(
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 16),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: InputDecorator(
-                              decoration: const InputDecoration(
-                                labelText: 'Directorio de salida por defecto',
-                                border: OutlineInputBorder(),
-                                prefixIcon: Icon(Icons.folder_open),
-                              ),
-                              child: Text(
-                                _defaultOutputPath,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 8),
-                          IconButton.filled(
-                            onPressed: _pickDefaultOutput,
-                            icon: const Icon(Icons.folder),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 12),
-                      TextField(
-                        controller: _orgCtrl,
-                        decoration: const InputDecoration(
-                          labelText: 'Organización por defecto',
-                          hintText: 'com.kuvuni',
-                          border: OutlineInputBorder(),
-                          prefixIcon: Icon(Icons.business),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-
-              // --- Información del proyecto ---
-              Card(
-                margin: const EdgeInsets.only(bottom: 16),
-                child: Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.info_outline,
-                            color: theme.colorScheme.primary,
-                          ),
-                          const SizedBox(width: 8),
-                          Text(
-                            'Información',
-                            style: theme.textTheme.titleMedium?.copyWith(
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 16),
-                      _buildInfoRow('Versión', '0.1.0'),
-                      const SizedBox(height: 8),
-                      _buildInfoRow('SDK requerido', 'Dart ≥3.12.0'),
-                      const SizedBox(height: 8),
-                      _buildInfoRow('Flutter requerido', '≥3.0.0'),
-                      const SizedBox(height: 8),
-                      _buildInfoRow('Plataformas', 'Windows, macOS, Linux'),
-                      const SizedBox(height: 16),
-                      const Divider(),
-                      const SizedBox(height: 8),
-                      Text(
-                        'Flutter Clean Generator te permite crear proyectos Flutter con Clean Architecture de forma visual.',
-                        style: theme.textTheme.bodySmall,
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        '✅ Creado con Dart y Flutter como herramienta educativa.',
-                        style: theme.textTheme.bodySmall,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              _buildAppearanceCard(theme),
+              _buildDefaultsCard(theme),
+              _buildInfoCard(theme),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildAppearanceCard(ThemeData theme) {
+    return SettingsCard(
+      icon: Icons.palette_outlined,
+      title: 'Apariencia',
+      children: [
+        Row(
+          children: [
+            const Text('Tema de la aplicación'),
+            const Spacer(),
+            SegmentedButton<ThemeMode>(
+              segments: const [
+                ButtonSegment(
+                  value: ThemeMode.light,
+                  icon: Icon(Icons.light_mode),
+                  label: Text('Claro'),
+                ),
+                ButtonSegment(
+                  value: ThemeMode.dark,
+                  icon: Icon(Icons.dark_mode),
+                  label: Text('Oscuro'),
+                ),
+                ButtonSegment(
+                  value: ThemeMode.system,
+                  icon: Icon(Icons.settings_brightness),
+                  label: Text('Sistema'),
+                ),
+              ],
+              selected: {themeModeNotifier.value},
+              onSelectionChanged: (value) {
+                themeModeNotifier.value = value.first;
+              },
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget _buildDefaultsCard(ThemeData theme) {
+    return SettingsCard(
+      icon: Icons.tune_outlined,
+      title: 'Valores por defecto',
+      children: [
+        Row(
+          children: [
+            Expanded(
+              child: InputDecorator(
+                decoration: const InputDecoration(
+                  labelText: 'Directorio de salida por defecto',
+                  border: OutlineInputBorder(),
+                  prefixIcon: Icon(Icons.folder_open),
+                ),
+                child: Text(
+                  _defaultOutputPath,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ),
+            const SizedBox(width: 8),
+            IconButton.filled(
+              onPressed: _pickDefaultOutput,
+              icon: const Icon(Icons.folder),
+            ),
+          ],
+        ),
+        const SizedBox(height: 12),
+        TextField(
+          controller: _orgCtrl,
+          decoration: const InputDecoration(
+            labelText: 'Organización por defecto',
+            hintText: 'com.kuvuni',
+            border: OutlineInputBorder(),
+            prefixIcon: Icon(Icons.business),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildInfoCard(ThemeData theme) {
+    return SettingsCard(
+      icon: Icons.info_outline,
+      title: 'Información',
+      children: [
+        _buildInfoRow('Versión', '0.1.0'),
+        const SizedBox(height: 8),
+        _buildInfoRow('SDK requerido', 'Dart ≥3.12.0'),
+        const SizedBox(height: 8),
+        _buildInfoRow('Flutter requerido', '≥3.0.0'),
+        const SizedBox(height: 8),
+        _buildInfoRow('Plataformas', 'Windows, macOS, Linux'),
+        const SizedBox(height: 16),
+        const Divider(),
+        const SizedBox(height: 8),
+        Text(
+          'Flutter Clean Generator te permite crear proyectos Flutter con Clean Architecture de forma visual.',
+          style: theme.textTheme.bodySmall,
+        ),
+        const SizedBox(height: 8),
+        Text(
+          '✅ Creado con Dart y Flutter como herramienta educativa.',
+          style: theme.textTheme.bodySmall,
+        ),
+      ],
     );
   }
 
