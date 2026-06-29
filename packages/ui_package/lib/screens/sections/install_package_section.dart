@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
+import '../../widgets/info_tooltip.dart';
 
 /// Card for installing a Flutter package in an existing project.
 class InstallPackageSection extends StatefulWidget {
@@ -88,10 +89,14 @@ class _InstallPackageSectionState extends State<InstallPackageSection> {
             const SizedBox(height: 16),
             TextField(
               controller: _pkgCtrl,
-              decoration: const InputDecoration(
-                labelText: 'Nombre del paquete',
+              decoration: InputDecoration(
+                label: const LabelWithInfo(
+                  label: 'Nombre del paquete',
+                  tooltip:
+                      'Nombre exacto del paquete en pub.dev (ej: dio, riverpod, go_router).',
+                ),
                 hintText: 'ej: dio',
-                border: OutlineInputBorder(),
+                border: const OutlineInputBorder(),
                 prefixIcon: Icon(Icons.inventory_2),
               ),
               onSubmitted: (_) => _installPackage(),
@@ -101,9 +106,13 @@ class _InstallPackageSectionState extends State<InstallPackageSection> {
               children: [
                 Expanded(
                   child: InputDecorator(
-                    decoration: const InputDecoration(
-                      labelText: 'Carpeta del proyecto',
-                      border: OutlineInputBorder(),
+                    decoration: InputDecoration(
+                      label: const LabelWithInfo(
+                        label: 'Carpeta del proyecto',
+                        tooltip:
+                            'Ruta del proyecto Flutter donde se instalará el paquete.',
+                      ),
+                      border: const OutlineInputBorder(),
                       prefixIcon: Icon(Icons.folder),
                     ),
                     child: Text(

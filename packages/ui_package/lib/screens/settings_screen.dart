@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import '../main.dart';
 import '../widgets/settings_card.dart';
+import '../widgets/info_tooltip.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -95,9 +96,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
           children: [
             Expanded(
               child: InputDecorator(
-                decoration: const InputDecoration(
-                  labelText: 'Directorio de salida por defecto',
-                  border: OutlineInputBorder(),
+                decoration: InputDecoration(
+                  label: const LabelWithInfo(
+                    label: 'Directorio de salida por defecto',
+                    tooltip:
+                        'Carpeta predeterminada donde se crearán los nuevos proyectos.',
+                  ),
+                  border: const OutlineInputBorder(),
                   prefixIcon: Icon(Icons.folder_open),
                 ),
                 child: Text(
@@ -116,10 +121,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
         const SizedBox(height: 12),
         TextField(
           controller: _orgCtrl,
-          decoration: const InputDecoration(
-            labelText: 'Organización por defecto',
+          decoration: InputDecoration(
+            label: const LabelWithInfo(
+              label: 'Organización por defecto',
+              tooltip:
+                  'Identificador de organización que se usará por defecto en todos los proyectos nuevos.',
+            ),
             hintText: 'com.kuvuni',
-            border: OutlineInputBorder(),
+            border: const OutlineInputBorder(),
             prefixIcon: Icon(Icons.business),
           ),
         ),

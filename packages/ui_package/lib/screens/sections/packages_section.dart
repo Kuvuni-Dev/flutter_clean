@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../widgets/form_section.dart';
+import '../../widgets/info_tooltip.dart';
 
 /// Section for selecting and adding packages to the project.
 class PackagesSection extends StatelessWidget {
@@ -72,10 +73,14 @@ class PackagesSection extends StatelessWidget {
           children: [
             Expanded(
               child: TextField(
-                decoration: const InputDecoration(
-                  labelText: 'Añadir paquete personalizado',
+                decoration: InputDecoration(
+                  label: const LabelWithInfo(
+                    label: 'Añadir paquete personalizado',
+                    tooltip:
+                        'Nombre de un paquete Dart/Flutter de pub.dev que quieras instalar en el proyecto.',
+                  ),
                   hintText: 'ej: package_name',
-                  border: OutlineInputBorder(),
+                  border: const OutlineInputBorder(),
                   prefixIcon: Icon(Icons.add_box),
                 ),
                 onSubmitted: (v) {

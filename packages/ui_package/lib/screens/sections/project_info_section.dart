@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:core_package/core_package.dart';
 import '../../widgets/form_section.dart';
+import '../../widgets/info_tooltip.dart';
 
 /// Section for entering basic project information.
 class ProjectInfoSection extends StatelessWidget {
@@ -36,21 +37,29 @@ class ProjectInfoSection extends StatelessWidget {
       children: [
         TextField(
           controller: nameCtrl,
-          decoration: const InputDecoration(
-            labelText: 'Nombre del proyecto *',
+          decoration: InputDecoration(
+            label: const LabelWithInfo(
+              label: 'Nombre del proyecto *',
+              tooltip:
+                  'Nombre único para tu proyecto Flutter. Se usará como identificador en pubspec.yaml.',
+            ),
             hintText: 'ej: mi_app',
-            border: OutlineInputBorder(),
-            prefixIcon: Icon(Icons.edit),
+            border: const OutlineInputBorder(),
+            prefixIcon: const Icon(Icons.edit),
           ),
         ),
         const SizedBox(height: 12),
         TextField(
           controller: descCtrl,
-          decoration: const InputDecoration(
-            labelText: 'Descripción',
+          decoration: InputDecoration(
+            label: const LabelWithInfo(
+              label: 'Descripción',
+              tooltip:
+                  'Breve descripción del propósito de tu proyecto. Aparecerá en el pubspec.yaml.',
+            ),
             hintText: 'Breve descripción del proyecto',
-            border: OutlineInputBorder(),
-            prefixIcon: Icon(Icons.description),
+            border: const OutlineInputBorder(),
+            prefixIcon: const Icon(Icons.description),
           ),
           maxLines: 2,
         ),
@@ -59,10 +68,14 @@ class ProjectInfoSection extends StatelessWidget {
           children: [
             Expanded(
               child: InputDecorator(
-                decoration: const InputDecoration(
-                  labelText: 'Directorio de salida',
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.folder_open),
+                decoration: InputDecoration(
+                  label: const LabelWithInfo(
+                    label: 'Directorio de salida',
+                    tooltip:
+                        'Carpeta donde se creará el proyecto. Debe ser una ruta vacía o nueva.',
+                  ),
+                  border: const OutlineInputBorder(),
+                  prefixIcon: const Icon(Icons.folder_open),
                 ),
                 child: Text(outputPath, overflow: TextOverflow.ellipsis),
               ),
@@ -78,20 +91,28 @@ class ProjectInfoSection extends StatelessWidget {
         const SizedBox(height: 12),
         TextField(
           controller: orgCtrl,
-          decoration: const InputDecoration(
-            labelText: 'Organización',
+          decoration: InputDecoration(
+            label: const LabelWithInfo(
+              label: 'Organización',
+              tooltip:
+                  'Identificador de tu organización en formato inverso (ej: com.kuvuni). Se usa para el bundle ID en Android y iOS.',
+            ),
             hintText: 'com.kuvuni',
-            border: OutlineInputBorder(),
-            prefixIcon: Icon(Icons.business),
+            border: const OutlineInputBorder(),
+            prefixIcon: const Icon(Icons.business),
           ),
         ),
         const SizedBox(height: 12),
         DropdownButtonFormField<TemplateType>(
           value: selectedTemplate,
-          decoration: const InputDecoration(
-            labelText: 'Plantilla / Arquitectura',
-            border: OutlineInputBorder(),
-            prefixIcon: Icon(Icons.category),
+          decoration: InputDecoration(
+            label: const LabelWithInfo(
+              label: 'Plantilla / Arquitectura',
+              tooltip:
+                  'Arquitectura base del proyecto. Clean Architecture es la recomendada para proyectos escalables.',
+            ),
+            border: const OutlineInputBorder(),
+            prefixIcon: const Icon(Icons.category),
           ),
           items: TemplateRegistry().allTemplates.map((t) {
             return DropdownMenuItem(

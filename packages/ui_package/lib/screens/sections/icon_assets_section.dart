@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import '../../widgets/form_section.dart';
+import '../../widgets/info_tooltip.dart';
 
 /// Section for configuring app icon and assets.
 class IconAssetsSection extends StatelessWidget {
@@ -32,9 +33,13 @@ class IconAssetsSection extends StatelessWidget {
           children: [
             Expanded(
               child: InputDecorator(
-                decoration: const InputDecoration(
-                  labelText: 'Icono de la app (PNG)',
-                  border: OutlineInputBorder(),
+                decoration: InputDecoration(
+                  label: const LabelWithInfo(
+                    label: 'Icono de la app (PNG)',
+                    tooltip:
+                        'Imagen PNG que será el ícono de la aplicación. Se copiará en lib/assets/.',
+                  ),
+                  border: const OutlineInputBorder(),
                   prefixIcon: Icon(Icons.image),
                 ),
                 child: Text(
@@ -62,9 +67,13 @@ class IconAssetsSection extends StatelessWidget {
           children: [
             Expanded(
               child: InputDecorator(
-                decoration: const InputDecoration(
-                  labelText: 'Assets (carpetas)',
-                  border: OutlineInputBorder(),
+                decoration: InputDecoration(
+                  label: const LabelWithInfo(
+                    label: 'Assets (carpetas)',
+                    tooltip:
+                        'Carpetas con recursos estáticos (imágenes, fuentes, etc.) que se incluirán en el pubspec.yaml.',
+                  ),
+                  border: const OutlineInputBorder(),
                   prefixIcon: Icon(Icons.folder_special),
                 ),
                 child: Text(

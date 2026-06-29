@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../widgets/form_section.dart';
 import '../../widgets/entity_chip.dart';
+import '../../widgets/info_tooltip.dart';
 
 /// Form section for creating a new feature.
 class FeatureFormSection extends StatelessWidget {
@@ -44,10 +45,14 @@ class FeatureFormSection extends StatelessWidget {
       children: [
         TextField(
           controller: featureNameCtrl,
-          decoration: const InputDecoration(
-            labelText: 'Nombre de la feature *',
+          decoration: InputDecoration(
+            label: const LabelWithInfo(
+              label: 'Nombre de la feature *',
+              tooltip:
+                  'Nombre del módulo o funcionalidad (ej: auth, users, products). Se usará para crear las carpetas y archivos.',
+            ),
             hintText: 'ej: auth',
-            border: OutlineInputBorder(),
+            border: const OutlineInputBorder(),
             prefixIcon: Icon(Icons.label),
           ),
         ),
@@ -56,9 +61,13 @@ class FeatureFormSection extends StatelessWidget {
           children: [
             Expanded(
               child: InputDecorator(
-                decoration: const InputDecoration(
-                  labelText: 'Ruta del proyecto',
-                  border: OutlineInputBorder(),
+                decoration: InputDecoration(
+                  label: const LabelWithInfo(
+                    label: 'Ruta del proyecto',
+                    tooltip:
+                        'Carpeta raíz del proyecto Flutter Clean donde se añadirá la nueva feature.',
+                  ),
+                  border: const OutlineInputBorder(),
                   prefixIcon: Icon(Icons.folder),
                 ),
                 child: Text(projectPath, overflow: TextOverflow.ellipsis),
@@ -78,10 +87,14 @@ class FeatureFormSection extends StatelessWidget {
             Expanded(
               child: TextField(
                 controller: entityCtrl,
-                decoration: const InputDecoration(
-                  labelText: 'Entidad',
+                decoration: InputDecoration(
+                  label: const LabelWithInfo(
+                    label: 'Entidad',
+                    tooltip:
+                        'Nombre de la entidad/modelo principal de la feature (ej: user, product, order). Se generarán sus archivos de modelo y repositorio.',
+                  ),
                   hintText: 'user',
-                  border: OutlineInputBorder(),
+                  border: const OutlineInputBorder(),
                   prefixIcon: Icon(Icons.data_object),
                 ),
                 onSubmitted: (_) => onAddEntity(),
