@@ -1,37 +1,37 @@
-# Flutter Clean
+# Flutter Generator
 
-Monorepo para generar proyectos Flutter con **Clean Architecture** desde línea de comandos.
+Monorepo para generar proyectos Flutter con múltiples arquitecturas desde línea de comandos o interfaz gráfica.
 
-> ⚡ Genera automáticamente toda la estructura de capas (domain, data, presentation) con entidades, repositorios, casos de uso, modelos y páginas listas para usar.
+> ⚡ Genera automáticamente toda la estructura de capas con entidades, repositorios, casos de uso, modelos y páginas listas para usar. Soporta Clean Architecture, MVC, MVVM, Provider, Riverpod, Bloc y Simple.
 
 ---
 
 ## 📦 Estructura del monorepo
 
 ```
-flutter_clean/                          ← Workspace nativo de Dart (SDK ≥3.9)
-├── pubspec.yaml                        ← Declaración del workspace
+flutter_generator/                    ← Workspace nativo de Dart (SDK ≥3.9)
+├── pubspec.yaml                      ← Declaración del workspace
 ├── packages/
-│   ├── core_package/                   ← Lógica compartida (100% Dart puro)
+│   ├── core_package/                 ← Lógica compartida (100% Dart puro)
 │   │   ├── lib/
-│   │   │   ├── models/                 ← Configuración de proyecto y features
+│   │   │   ├── models/               ← Configuración de proyecto y features
 │   │   │   │   ├── project_config.dart
 │   │   │   │   └── feature_config.dart
-│   │   │   ├── core/                   ← Utilidades base
-│   │   │   │   ├── file_system.dart    ← Operaciones del sistema de archivos
+│   │   │   ├── core/                 ← Utilidades base
+│   │   │   │   ├── file_system.dart  ← Operaciones del sistema de archivos
 │   │   │   │   └── template_engine.dart ← Motor de templates {{variable}}
-│   │   │   └── generators/             ← Generadores de código
+│   │   │   └── generators/           ← Generadores de código
 │   │   │       ├── project_generator.dart  ← Genera proyecto completo
 │   │   │       └── feature_generator.dart  ← Añade features a proyectos
 │   │   └── pubspec.yaml
-│   ├── cli_package/                    ← Interfaz de línea de comandos
+│   ├── cli_package/                  ← Interfaz de línea de comandos
 │   │   ├── bin/
-│   │   │   └── flutter_clean.dart      ← Entry point de la CLI
+│   │   │   └── flutter_generator.dart ← Entry point de la CLI
 │   │   └── lib/
 │   │       └── commands/
 │   │           ├── create_project.dart  ← Comando `create`
 │   │           └── make_feature.dart    ← Comando `make:feature`
-│   └── ui_package/                     ← Interfaz gráfica (Flutter) [WIP]
+│   └── ui_package/                   ← Interfaz gráfica (Flutter)
 │       └── lib/main.dart
 ```
 
@@ -52,18 +52,18 @@ No requiere instalación global. Se ejecuta directamente desde el monorepo:
 
 ```bash
 # Desde la raíz del proyecto
-cd d:/Kuvuni/flutter_clean
+cd d:/Kuvuni/flutter_generator
 
 # Ver comandos disponibles
-dart run flutter_clean_cli:flutter_clean
+dart run flutter_generator_cli:flutter_generator
 ```
 
 ### Comando `create` — Crear un nuevo proyecto
 
-Ejecuta `flutter create --empty` para generar un proyecto Flutter base limpio y luego superpone la estructura Clean Architecture:
+Ejecuta `flutter create --empty` para generar un proyecto Flutter base limpio y luego superpone la estructura de la arquitectura seleccionada:
 
 ```bash
-dart run flutter_clean_cli:flutter_clean create --name mi_app --output ./mis_proyectos
+dart run flutter_generator_cli:flutter_generator create --name mi_app --output ./mis_proyectos
 ```
 
 **Flags:**
@@ -74,25 +74,26 @@ dart run flutter_clean_cli:flutter_clean create --name mi_app --output ./mis_pro
 | `--output` | `-o` | Directorio de salida | `.` | ❌ No |
 | `--description` | `-d` | Descripción del proyecto | `""` | ❌ No |
 | `--organization` | `-g` | Organización (ej: `com.example`) | `com.kuvuni` | ❌ No |
+| `--template` | `-t` | Plantilla a usar | `clean` | ❌ No |
 
 **Ejemplo:**
 
 ```bash
-dart run flutter_clean_cli:flutter_clean create \
+dart run flutter_generator_cli:flutter_generator create \
     --name ecommerce_app \
     --description "App de comercio electrónico" \
     --output ./proyectos \
     --organization com.miempresa
 ```
 
-**Resultado:** Crea la carpeta `./proyectos/ecommerce_app/` con toda la estructura Clean Architecture.
+**Resultado:** Crea la carpeta `./proyectos/ecommerce_app/` con toda la estructura de la arquitectura seleccionada.
 
 ### Comando `make:feature` — Añadir una feature
 
 Añade una feature completa (domain + data + presentation) a un proyecto existente:
 
 ```bash
-dart run flutter_clean_cli:flutter_clean make:feature --name auth --project ./proyectos/ecommerce_app
+dart run flutter_generator_cli:flutter_generator make:feature --name auth --project ./proyectos/ecommerce_app
 ```
 
 **Flags:**
@@ -109,16 +110,16 @@ dart run flutter_clean_cli:flutter_clean make:feature --name auth --project ./pr
 
 ```bash
 # Feature básica (genera entidad con el mismo nombre de la feature)
-dart run flutter_clean_cli:flutter_clean make:feature --name auth --project ./mi_app
+dart run flutter_generator_cli:flutter_generator make:feature --name auth --project ./mi_app
 
 # Feature con entidades personalizadas
-dart run flutter_clean_cli:flutter_clean make:feature \
+dart run flutter_generator_cli:flutter_generator make:feature \
     --name tasks \
     --entities task,project,comment \
     --project ./mi_app
 
-# Feature solo con capa de dominio (sin data ni presentation)
-dart run flutter_clean_cli:flutter_clean make:feature \
+# Feature solo con capa de dominio (sin data ni presentación)
+dart run flutter_generator_cli:flutter_generator make:feature \
     --name analytics \
     --no-data --no-presentation \
     --project ./mi_app
@@ -126,9 +127,21 @@ dart run flutter_clean_cli:flutter_clean make:feature \
 
 ---
 
-## 🧠 Arquitectura generada
+## 🧠 Arquitecturas disponibles
 
-Cada proyecto generado sigue **Clean Architecture** con tres capas bien definidas:
+El generador soporta múltiples plantillas de arquitectura:
+
+| Plantilla | Descripción |
+|-----------|-------------|
+| `clean` | Clean Architecture (domain / data / presentation) |
+| `mvc` | Model-View-Controller |
+| `mvvm` | Model-View-ViewModel |
+| `provider` | Provider + ChangeNotifier |
+| `riverpod` | Riverpod + code generation |
+| `bloc` | Bloc / Cubit |
+| `simple` | Estructura básica sin capas |
+
+Cada proyecto generado con Clean Architecture sigue esta estructura:
 
 ```
 mi_app/lib/
@@ -245,9 +258,9 @@ flutter run -d windows
 
 ```bash
 # Desde la raíz del monorepo
-dart run flutter_clean_cli:flutter_clean
-dart run flutter_clean_cli:flutter_clean create --name test_app --output ./tmp
-dart run flutter_clean_cli:flutter_clean make:feature --name users --project ./tmp/test_app
+dart run flutter_generator_cli:flutter_generator
+dart run flutter_generator_cli:flutter_generator create --name test_app --output ./tmp
+dart run flutter_generator_cli:flutter_generator make:feature --name users --project ./tmp/test_app
 ```
 
 ---

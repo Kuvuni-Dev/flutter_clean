@@ -32,9 +32,14 @@ class CleanArchitectureTemplate implements ProjectTemplate {
   String get name => 'Clean Architecture';
 
   @override
+  String get shortDescription => 'Domain / Data / Presentation';
+
+  @override
   String get description =>
-      'Arquitectura limpia con capas domain/data/presentation. '
-      'Ideal para proyectos grandes y escalables.';
+      'Arquitectura limpia con separación en tres capas (domain, data, presentation). '
+      'Ideal para proyectos grandes y escalables que requieren alta mantenibilidad, '
+      'testeabilidad y una clara separación de responsabilidades. '
+      'Las dependencias apuntan hacia adentro: la capa de dominio no depende de Flutter ni de fuentes de datos externas.';
 
   @override
   TemplateType get type => TemplateType.cleanArchitecture;

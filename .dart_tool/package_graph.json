@@ -1,13 +1,13 @@
 {
   "roots": [
     "core_package",
-    "flutter_clean",
-    "flutter_clean_cli",
-    "flutter_clean_ui"
+    "flutter_generator",
+    "flutter_generator_cli",
+    "flutter_generator_ui"
   ],
   "packages": [
     {
-      "name": "flutter_clean",
+      "name": "flutter_generator",
       "version": "0.0.0",
       "dependencies": [],
       "devDependencies": []
@@ -23,7 +23,7 @@
       ]
     },
     {
-      "name": "flutter_clean_cli",
+      "name": "flutter_generator_cli",
       "version": "0.0.1",
       "dependencies": [
         "args",
@@ -34,7 +34,7 @@
       ]
     },
     {
-      "name": "flutter_clean_ui",
+      "name": "flutter_generator_ui",
       "version": "0.1.0+1",
       "dependencies": [
         "core_package",

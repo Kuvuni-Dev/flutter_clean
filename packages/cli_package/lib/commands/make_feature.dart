@@ -27,7 +27,7 @@ class MakeFeatureCommand {
     } catch (e) {
       print('Error: $e');
       print(
-          'Uso: flutter_clean make:feature --name <feature> [--project <ruta>] [--entities <e1,e2>] [--no-data] [--no-presentation]');
+          'Uso: flutter_generator make:feature --name <feature> [--project <ruta>] [--entities <e1,e2>] [--no-data] [--no-presentation]');
       exitCode = 1;
       return;
     }

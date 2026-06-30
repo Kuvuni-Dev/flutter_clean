@@ -1,5 +1,5 @@
-import 'package:flutter_clean_cli/commands/create_project.dart';
-import 'package:flutter_clean_cli/commands/make_feature.dart';
+import 'package:flutter_generator_cli/commands/create_project.dart';
+import 'package:flutter_generator_cli/commands/make_feature.dart';
 
 void main(List<String> args) {
   if (args.isEmpty) {

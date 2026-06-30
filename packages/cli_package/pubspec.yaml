@@ -1,6 +1,6 @@
-name: flutter_clean_cli
+name: flutter_generator_cli
 resolution: workspace
-description: CLI para generar proyectos Flutter Clean
+description: CLI para generar proyectos Flutter con múltiples plantillas
 version: 0.0.1
 publish_to: none
 
@@ -13,7 +13,7 @@ dependencies:
     path: ../core_package
 
 executables:
-  flutter_clean: flutter_clean
+  flutter_generator: flutter_generator
 
 dev_dependencies:
   lints: ^6.0.0

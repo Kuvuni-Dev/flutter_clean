@@ -224,7 +224,7 @@
       "languageVersion": "3.8"
     },
     {
-      "name": "flutter_clean",
+      "name": "flutter_generator",
       "rootUri": "../",
       "packageUri": "lib/",
       "languageVersion": "3.9"
@@ -236,13 +236,13 @@
       "languageVersion": "3.5"
     },
     {
-      "name": "flutter_clean_cli",
+      "name": "flutter_generator_cli",
       "rootUri": "../packages/cli_package",
       "packageUri": "lib/",
       "languageVersion": "3.5"
     },
     {
-      "name": "flutter_clean_ui",
+      "name": "flutter_generator_ui",
       "rootUri": "../packages/ui_package",
       "packageUri": "lib/",
       "languageVersion": "3.12"

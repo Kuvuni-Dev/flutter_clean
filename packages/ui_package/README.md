@@ -1,6 +1,6 @@
-# Flutter Clean UI
+# Flutter Generator UI
 
-Interfaz gráfica para **Flutter Clean Generator**, construida con Flutter para escritorio (Windows, macOS, Linux).
+Interfaz gráfica para **Flutter Generator**, construida con Flutter para escritorio (Windows, macOS, Linux).
 
 ## Requisitos
 
@@ -26,7 +26,7 @@ flutter run -d linux
 
 ## Funcionalidades
 
-- **Crear proyecto**: Formulario para generar un proyecto Flutter con Clean Architecture usando `flutter create --empty` como base.
+- **Crear proyecto**: Formulario para generar un proyecto Flutter con la arquitectura seleccionada usando `flutter create --empty` como base.
 - **Añadir feature**: Formulario para añadir una feature completa (domain/data/presentation) a un proyecto existente.
 - **Entidades personalizadas**: Permite añadir múltiples entidades por feature.
 - **Opción de capas**: Checkboxes para incluir/excluir capa de datos y presentación.

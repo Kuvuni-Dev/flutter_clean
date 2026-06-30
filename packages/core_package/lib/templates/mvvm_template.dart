@@ -19,9 +19,14 @@ class MvvmTemplate implements ProjectTemplate {
   String get name => 'MVVM';
 
   @override
+  String get shortDescription => 'Model / View / ViewModel';
+
+  @override
   String get description =>
-      'Patrón Modelo-Vista-ViewModel con ChangeNotifier. '
-      'Ideal para apps con lógica de presentación compleja.';
+      'Patrón Modelo-Vista-ViewModel con ChangeNotifier para enlazar datos. '
+      'Ideal para apps con lógica de presentación compleja que requieren una '
+      'clara separación entre la interfaz de usuario y la lógica de negocio. '
+      'El ViewModel expone estados reactivos que la Vista observa automáticamente.';
 
   @override
   TemplateType get type => TemplateType.mvvm;

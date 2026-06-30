@@ -7,7 +7,8 @@ class CreateProjectCommand {
   void run(List<String> args) {
     // Obtener lista de templates disponibles para el mensaje de ayuda
     final templates = TemplateRegistry().allTemplates;
-    final templateOptions = templates.map((t) => '${t.type.slug} (${t.name})').join(', ');
+    final templateOptions =
+        templates.map((t) => '${t.type.slug} (${t.name})').join(', ');
 
     final parser = ArgParser()
       ..addOption('name',
@@ -30,7 +31,7 @@ class CreateProjectCommand {
       parsed = parser.parse(args);
     } catch (e) {
       print('Error: $e');
-      print('Uso: flutter_clean create --name <nombre> '
+      print('Uso: flutter_generator create --name <nombre> '
           '[--description <desc>] [--output <dir>] '
           '[--organization <org>] [--template <plantilla>]');
       print('');
@@ -82,7 +83,7 @@ class CreateProjectCommand {
       print('');
       print('Para añadir una feature:');
       print('  cd ${config.outputPath}/${config.folderName}');
-      print('  flutter_clean make:feature --name <feature_name>');
+      print('  flutter_generator make:feature --name <feature_name>');
     }).catchError((error) {
       print('❌ Error al crear el proyecto: $error');
       exitCode = 1;

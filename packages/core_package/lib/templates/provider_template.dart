@@ -20,9 +20,14 @@ class ProviderTemplate implements ProjectTemplate {
   String get name => 'Provider';
 
   @override
+  String get shortDescription => 'Provider + ChangeNotifier';
+
+  @override
   String get description =>
-      'Patrón Provider con ChangeNotifier. '
-      'Ideal para apps medianas con gestión de estado simple.';
+      'Patrón Provider con ChangeNotifier para gestión de estado simple y eficaz. '
+      'Ideal para apps medianas donde se necesita compartir estado entre widgets '
+      'de forma sencilla. Proporciona MultiProvider, Consumer y context.read/watch '
+      'para acceder a los proveedores desde cualquier parte del árbol de widgets.';
 
   @override
   TemplateType get type => TemplateType.provider;

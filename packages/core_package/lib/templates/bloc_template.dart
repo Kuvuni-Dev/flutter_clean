@@ -22,6 +22,9 @@ class BlocTemplate implements ProjectTemplate {
   String get name => 'BLoC';
 
   @override
+  String get shortDescription => 'Gestión de estado reactiva y escalable';
+
+  @override
   String get description =>
       'Patrón BLoC (Business Logic Component) con flutter_bloc. '
       'Ideal para apps complejas con flujos de estado predecibles.';

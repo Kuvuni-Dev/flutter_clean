@@ -18,9 +18,14 @@ class MvcTemplate implements ProjectTemplate {
   String get name => 'MVC';
 
   @override
+  String get shortDescription => 'Model / View / Controller';
+
+  @override
   String get description =>
-      'Patrón Modelo-Vista-Controlador clásico. '
-      'Ideal para proyectos pequeños y medianos.';
+      'Patrón Modelo-Vista-Controlador clásico con separación en tres componentes. '
+      'Ideal para proyectos pequeños y medianos donde se necesita una estructura '
+      'simple pero organizada. El controlador maneja la lógica de negocio, '
+      'la vista renderiza la interfaz y el modelo representa los datos.';
 
   @override
   TemplateType get type => TemplateType.mvc;

@@ -20,9 +20,14 @@ class RiverpodTemplate implements ProjectTemplate {
   String get name => 'Riverpod';
 
   @override
+  String get shortDescription => 'Riverpod + Notifier';
+
+  @override
   String get description =>
-      'Patrón Riverpod con AsyncNotifier. '
-      'Ideal para apps modernas con gestión de estado reactiva.';
+      'Patrón Riverpod con Notifier/AsyncNotifier para gestión de estado reactiva y compilada. '
+      'Ideal para apps modernas que necesitan un sistema de estado seguro, testeable y '
+      'con excelente soporte de código generado. Riverpod es la evolución de Provider, '
+      'con providers globales, autodisposición y sin dependencia del árbol de widgets.';
 
   @override
   TemplateType get type => TemplateType.riverpod;

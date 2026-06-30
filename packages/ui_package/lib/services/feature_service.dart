@@ -19,7 +19,7 @@ class FeatureService {
 
   FeatureService() : _fs = FileSystem(), _engine = const TemplateEngine();
 
-  /// Creates a new feature in an existing Flutter Clean project.
+  /// Creates a new feature in an existing Flutter Generator project.
   Future<FeatureResult> createFeature({
     required String featureName,
     required String projectPath,
@@ -60,7 +60,8 @@ class FeatureService {
   /// Picks a project directory using the file picker.
   static Future<String?> pickProjectDirectory({String? title}) async {
     return await FilePicker.platform.getDirectoryPath(
-      dialogTitle: title ?? 'Seleccionar carpeta del proyecto Flutter Clean',
+      dialogTitle:
+          title ?? 'Seleccionar carpeta del proyecto Flutter Generator',
     );
   }
 }

@@ -1,6 +1,6 @@
-# Documentación - Flutter Clean Generator
+# Documentación - Flutter Generator
 
-Bienvenido a la documentación de **Flutter Clean Generator**. Aquí encontrarás guías, ejemplos y referencias para aprender Clean Architecture con Flutter.
+Bienvenido a la documentación de **Flutter Generator**. Aquí encontrarás guías, ejemplos y referencias para aprender diferentes arquitecturas con Flutter.
 
 ---
 

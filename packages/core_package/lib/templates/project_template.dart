@@ -69,6 +69,7 @@ extension TemplateTypeDisplay on TemplateType {
 ///
 /// Cada template define:
 /// - [name] y [description] para identificación
+/// - [shortDescription] texto breve para selectores y listas
 /// - [directories] para la estructura de carpetas
 /// - [generateCore] para los archivos base
 /// - [generateInitialFeature] para la feature de ejemplo
@@ -76,7 +77,10 @@ abstract class ProjectTemplate {
   /// Nombre único del template.
   String get name;
 
-  /// Descripción del template.
+  /// Descripción corta del template (para dropdowns, selects, listas CLI).
+  String get shortDescription;
+
+  /// Descripción larga y detallada del template (para info/ayuda).
   String get description;
 
   /// Tipo de template.

@@ -155,7 +155,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         const Divider(),
         const SizedBox(height: 8),
         Text(
-          'Flutter Clean Generator te permite crear proyectos Flutter con Clean Architecture de forma visual.',
+          'Flutter Generator te permite crear proyectos Flutter con diferentes plantillas de forma visual.',
           style: theme.textTheme.bodySmall,
         ),
         const SizedBox(height: 8),

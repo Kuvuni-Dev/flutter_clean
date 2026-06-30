@@ -7,11 +7,11 @@ final ValueNotifier<ThemeMode> themeModeNotifier = ValueNotifier(
 );
 
 void main() {
-  runApp(const FlutterCleanApp());
+  runApp(const FlutterGeneratorApp());
 }
 
-class FlutterCleanApp extends StatelessWidget {
-  const FlutterCleanApp({super.key});
+class FlutterGeneratorApp extends StatelessWidget {
+  const FlutterGeneratorApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class FlutterCleanApp extends StatelessWidget {
       valueListenable: themeModeNotifier,
       builder: (context, themeMode, _) {
         return MaterialApp(
-          title: 'Flutter Clean Generator',
+          title: 'Flutter Generator',
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
             colorSchemeSeed: const Color(0xFF4CAF50),

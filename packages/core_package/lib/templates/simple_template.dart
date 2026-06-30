@@ -17,6 +17,9 @@ class SimpleTemplate implements ProjectTemplate {
   String get name => 'Simple';
 
   @override
+  String get shortDescription => 'Aplicación mínima';
+
+  @override
   String get description =>
       'Estructura minimalista de Flutter sin patrones complejos. '
       'Ideal para prototipos y proyectos muy pequeños.';

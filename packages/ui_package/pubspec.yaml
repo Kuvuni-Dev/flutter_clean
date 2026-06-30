@@ -1,6 +1,6 @@
-name: flutter_clean_ui
+name: flutter_generator_ui
 resolution: workspace
-description: UI para generar proyectos Flutter Clean
+description: UI para generar proyectos Flutter con múltiples plantillas
 publish_to: 'none'
 version: 0.1.0+1
 

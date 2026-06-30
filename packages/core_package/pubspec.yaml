@@ -1,6 +1,6 @@
 name: core_package
 resolution: workspace
-description: Núcleo compartido para generador Flutter Clean
+description: Núcleo compartido para Flutter Generator
 version: 0.0.1
 
 environment:

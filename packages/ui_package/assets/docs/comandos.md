@@ -1,32 +1,34 @@
 # Comandos CLI
 
-Flutter Clean Generator incluye una CLI para crear proyectos y añadir features desde la terminal.
+Flutter Generator incluye una CLI para crear proyectos y añadir features desde la terminal.
 
 ## Crear proyecto
 
 ```bash
-dart run flutter_clean_cli:flutter_clean create:project
+dart run flutter_generator_cli:flutter_generator create --name mi_app
 ```
 
 Este comando:
 
 1. Ejecuta `flutter create --empty` como base
-2. Crea la estructura de directorios Clean Architecture
+2. Crea la estructura de directorios de la arquitectura seleccionada
 3. Genera los archivos core (`main.dart`, `app.dart`, router, theme, etc.)
-4. Genera la feature `bio` de ejemplo
+4. Genera la feature `user` de ejemplo
 
 ### Opciones
 
 | Opción | Descripción | Valor por defecto |
 |--------|-------------|-------------------|
 | `--name` | Nombre del proyecto | (requerido) |
-| `--org` | Organización | `com.kuvuni` |
+| `--description` | Descripción del proyecto | `""` |
+| `--organization` | Organización | `com.kuvuni` |
 | `--output` | Directorio de salida | `.` |
+| `--template` | Plantilla a usar | `clean` |
 
 ## Añadir features
 
 ```bash
-dart run flutter_clean_cli:flutter_clean make:feature --name auth
+dart run flutter_generator_cli:flutter_generator make:feature --name auth
 ```
 
 Este comando añade una nueva feature autocontenida dentro de `lib/features/{nombre}/`.
@@ -44,12 +46,12 @@ Este comando añade una nueva feature autocontenida dentro de `lib/features/{nom
 
 ```bash
 # Feature básica con entidades personalizadas
-dart run flutter_clean_cli:flutter_clean make:feature \
+dart run flutter_generator_cli:flutter_generator make:feature \
   --name blog \
   --entities post,comment
 
 # Feature solo con capa domain
-dart run flutter_clean_cli:flutter_clean make:feature \
+dart run flutter_generator_cli:flutter_generator make:feature \
   --name analytics \
   --no-data \
   --no-presentation
@@ -75,7 +77,7 @@ flutter pub remove dio
 flutter doctor
 
 # Obtener ayuda de la CLI
-dart run flutter_clean_cli:flutter_clean --help
+dart run flutter_generator_cli:flutter_generator --help
 
 # Analizar el proyecto en busca de errores
 flutter analyze
